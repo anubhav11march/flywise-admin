@@ -106,10 +106,25 @@ const AddBlogForm = () => {
     formData.append("links[linkedin]", blogData.links.linkedin);
 
     try {
+      if (
+        !blogData.writerName ||
+        !blogData.writerTagline ||
+        !blogData.title ||
+        !blogData.date ||
+        !blogData.body ||
+        !blogData.tag
+      ) {
+        alert(
+          "Please fill all the fields (name,title,date,blog description,tag)"
+        );
+        setspinn(false);
+        return;
+      }
       await axios.post("https://api.flywise.in/api/createBlog", formData);
       history.push("/blogs");
       setspinn(false);
     } catch (error) {
+      alert(error.response.data.message);
       console.log(error);
       setspinn(false);
     }
