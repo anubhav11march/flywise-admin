@@ -32,7 +32,8 @@ const LoginPage = () => {
         );
 
         setLoading(false);
-        if (data?.data?.isView == true) {
+        if (data?.data) {
+        // if (data?.data?.isView == true) {
           localStorage.setItem("flywise", JSON.stringify(data?.data));
         } else {
           alert("you can't access the admin panel");
